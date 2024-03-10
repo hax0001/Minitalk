@@ -6,7 +6,7 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:49:29 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/09 20:08:23 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:22:14 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 void convert_message(int PID, char c)
 {
-	
+	int		i;
+	char	h;
 
+	i = 7;
+	while (i >= 0)
+	{
+		h = c >> i & 1;
+		if(h == 1)
+			kill(PID, SIGUSR1);
+		else
+			kill(PID, SIGUSR2);
+		i--;
+		usleep(70);
+	}
 }
 
 int main(int argc, char **argv)
