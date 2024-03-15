@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:00:57 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/08 19:21:12 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/14 02:55:13 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
 size_t		ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr1(const char *s, int c);
 
 #endif

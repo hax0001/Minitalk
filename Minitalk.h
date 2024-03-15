@@ -3,6 +3,8 @@
 
 #include <signal.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <time.h>
 #include "libft/libft.h"
 
 

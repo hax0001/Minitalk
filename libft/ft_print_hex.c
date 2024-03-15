@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:33:40 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/10 19:35:29 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/11 02:57:03 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_print_hex(unsigned int n, int d)
 	result = malloc(len);
 	while (n)
 	{
-		if ((n % 16) >= 0 && (n % 16) <= 9)
+		if ((n % 16) <= 9)
 			result[i++] = ((n % 16) + 48);
 		else if ((n % 16) >= 10 && (n % 16) <= 15)
 			result[i++] = ((n % 16) + d);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:10:30 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/12 23:18:52 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/14 02:55:23 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (ft_strchr("cspdiuxX", *format))
+			if (ft_strchr1("cspdiuxX", *format))
 				i += ft_check(arg, *format);
 			else if (*format == '%')
 				i += ft_print_char(*format);

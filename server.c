@@ -3,25 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 18:32:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/10 13:25:31 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:23:05 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minitalk.h"
 
-void handler(int sig)
+typedef struct s_data
 {
-	
+	char	c;
+	int		pos;
+}				t_data;
+
+t_data data;
+void	ft_catch(int sig)
+{
+	if (sig == SIGUSR1)
+		data.c |= 1 << data.pos; 
+	data.pos++;
+	if (data.pos == 8)
+	{
+		data.pos = 0;
+		if (!data.c)
+			ft_putchar('\n');
+		else
+			ft_putchar(data.c);
+		data.c = 0;
+	}
 }
 
-int main()
-{	
-	ft_printf("The PID of this server is : %d \n",getpid());
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
-	while(1){
-	}
+int		main()
+{
+	data.c = 0;
+	data.pos = 0;
+	ft_putnbr(getpid());
+	ft_putchar('\n');
+	signal(SIGUSR1, ft_catch);
+	signal(SIGUSR2, ft_catch);
+	while(1)
+		pause();
+	return (0);
 }

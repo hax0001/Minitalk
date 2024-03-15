@@ -3,47 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:49:29 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/10 13:22:14 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:22:35 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minitalk.h"
 
-void convert_message(int PID, char c)
+void	ft_send(int pid, char data)
 {
-	int		i;
-	char	h;
+	int i;
+	char bit;
 
-	i = 7;
-	while (i >= 0)
+	i = 0;
+	while(i < 8)
 	{
-		h = c >> i & 1;
-		if(h == 1)
-			kill(PID, SIGUSR1);
+		bit = (data >> i) & 1;
+		if(bit == 1)
+			kill(pid, SIGUSR1);
 		else
-			kill(PID, SIGUSR2);
-		i--;
-		usleep(70);
+			kill(pid, SIGUSR2);
+		usleep(200);
+		i++;
 	}
 }
 
-int main(int argc, char **argv)
+int		main(int y, char **v)
 {
-	int	PID;
-	int	i;
+	int		i;
+	int		pid;
 
 	i = 0;
-	if (argc != 3)
+	if (y == 3)
 	{
-		ft_printf("dkhl asahbi PID o message");    
-	}
-	PID = ft_atoi(argv[1]);
-	while (argv[2][i])
-	{
-		convert_message(PID, argv[2][i]);
-		i++;
+		pid = ft_atoi(v[1]);
+		while (v[2][i])
+		{
+			ft_send(pid, v[2][i]);
+			i++;
+		}
+		ft_send(pid, 0);
 	}
 }
