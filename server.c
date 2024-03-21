@@ -3,47 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 18:32:50 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/15 04:23:05 by hax              ###   ########.fr       */
+/*   Created: 2024/03/21 11:32:36 by nait-bou          #+#    #+#             */
+/*   Updated: 2024/03/21 12:07:23 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minitalk.h"
+#include "minitalk.h"
 
-typedef struct s_data
-{
-	char	c;
-	int		pos;
-}				t_data;
+short	*s;
 
-t_data data;
-void	ft_catch(int sig)
+void	handler(int sig)
 {
-	if (sig == SIGUSR1)
-		data.c |= 1 << data.pos; 
-	data.pos++;
-	if (data.pos == 8)
+	*(char *)s = *(char *)s << 1 | (sig == SIGUSR1);
+	*(char *)(s + 1) += 1;
+	if (*(char *)((s + 1)) == 8)
 	{
-		data.pos = 0;
-		if (!data.c)
-			ft_putchar('\n');
-		else
-			ft_putchar(data.c);
-		data.c = 0;
+		write(1, (char *)s, 1);
+		*(char *)((s + 1)) = 0;
 	}
 }
 
-int		main()
+int	main(void)
 {
-	data.c = 0;
-	data.pos = 0;
-	ft_putnbr(getpid());
-	ft_putchar('\n');
-	signal(SIGUSR1, ft_catch);
-	signal(SIGUSR2, ft_catch);
-	while(1)
-		pause();
-	return (0);
+	short	a;
+
+	a = 0;
+	s = &a;
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
+	ft_printf("the PID of this server is %d\n", getpid());
+	while (1)
+	{
+	}
 }

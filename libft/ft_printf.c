@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:10:30 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/14 02:55:23 by hax              ###   ########.fr       */
+/*   Updated: 2024/03/21 11:17:53 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static int	ft_check(va_list arg, char format)
 {
@@ -48,7 +48,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (ft_strchr1("cspdiuxX", *format))
+			if (ft_strchr("cspdiuxX", *format))
 				i += ft_check(arg, *format);
 			else if (*format == '%')
 				i += ft_print_char(*format);

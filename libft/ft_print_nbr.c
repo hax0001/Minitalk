@@ -6,11 +6,11 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:50:49 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/12 11:14:24 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:16:54 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_nbr(int nbr)
 {

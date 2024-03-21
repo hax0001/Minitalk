@@ -6,11 +6,11 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:51:46 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/12 11:42:13 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:17:21 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	ft_putnbr2(unsigned int n)
 {

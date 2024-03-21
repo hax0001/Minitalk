@@ -6,11 +6,11 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:12:55 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/12/12 11:11:31 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:17:12 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_str(char *str)
 {

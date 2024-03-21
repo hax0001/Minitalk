@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 18:45:59 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/21 11:16:35 by nait-bou         ###   ########.fr       */
+/*   Created: 2023/11/22 23:50:47 by nait-bou          #+#    #+#             */
+/*   Updated: 2023/11/23 00:36:45 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_char(char c)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	ft_putchar(c);
-	return (1);
+	t_list	*d;
+	t_list	*t;
+
+	if (!lst || !del)
+		return ;
+	d = *lst;
+	while (d)
+	{
+		t = d -> next;
+		ft_lstdelone(d, del);
+		d = t;
+	}
+	*lst = NULL;
 }

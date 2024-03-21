@@ -6,15 +6,13 @@
 #    By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 23:45:41 by nait-bou          #+#    #+#              #
-#    Updated: 2024/03/09 14:40:22 by nait-bou         ###   ########.fr        #
+#    Updated: 2024/03/21 11:25:34 by nait-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
-RM = rm -rf
-
 SERVER = server
 CLIENT = client
 

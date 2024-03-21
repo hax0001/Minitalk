@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:08:13 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/14 02:56:00 by hax              ###   ########.fr       */
+/*   Updated: 2024/03/21 11:48:33 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_putchar(char c)
 {
@@ -42,31 +42,4 @@ void	ft_putnbr(int n)
 	}
 	else
 		ft_putchar(n + '0');
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strchr1(const char *s, int c)
-{
-	char	t;
-
-	t = (char)c;
-	while (*s)
-	{
-		if (*s == t)
-			return ((char *)s);
-		s++;
-	}
-	if (t == '\0')
-		return ((char *)s);
-	else
-		return (NULL);
 }

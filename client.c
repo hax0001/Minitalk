@@ -3,47 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 00:49:29 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/15 04:22:35 by hax              ###   ########.fr       */
+/*   Created: 2024/03/21 11:32:52 by nait-bou          #+#    #+#             */
+/*   Updated: 2024/03/21 11:59:28 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minitalk.h"
+#include "minitalk.h"
 
-void	ft_send(int pid, char data)
+void	send_message(int pid, char c)
 {
-	int i;
-	char bit;
+	int		i;
+	char	s;
 
-	i = 0;
-	while(i < 8)
+	i = 7;
+	while (i >= 0)
 	{
-		bit = (data >> i) & 1;
-		if(bit == 1)
-			kill(pid, SIGUSR1);
-		else
+		s = c >> i & 1;
+		if (s == 0)
 			kill(pid, SIGUSR2);
-		usleep(200);
-		i++;
+		else
+			kill(pid, SIGUSR1);
+		i--;
+		usleep(100);
 	}
 }
 
-int		main(int y, char **v)
+int	main(int argc, char **argv)
 {
-	int		i;
-	int		pid;
+	int	i;
+	int	pid;
 
 	i = 0;
-	if (y == 3)
+	if (argc != 3)
 	{
-		pid = ft_atoi(v[1]);
-		while (v[2][i])
-		{
-			ft_send(pid, v[2][i]);
-			i++;
-		}
-		ft_send(pid, 0);
+		ft_printf("make sur to provid the PID and the message /n");
+		return (1);
 	}
+	pid = ft_atoi(argv[1]);
+	while (argv[2][i])
+		send_message(pid, argv[2][i++]);
+	send_message(pid, 10);
 }

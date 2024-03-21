@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 18:45:59 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/21 11:16:35 by nait-bou         ###   ########.fr       */
+/*   Created: 2023/11/22 03:54:16 by nait-bou          #+#    #+#             */
+/*   Updated: 2023/11/22 04:12:16 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_char(char c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	ft_putchar(c);
-	return (1);
+	if (!lst)
+		return (NULL);
+	while (lst -> next != NULL)
+	{
+		lst = lst -> next;
+	}
+	return (lst);
 }
