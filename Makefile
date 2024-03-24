@@ -6,7 +6,7 @@
 #    By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 23:45:41 by nait-bou          #+#    #+#              #
-#    Updated: 2024/03/21 11:25:34 by nait-bou         ###   ########.fr        #
+#    Updated: 2024/03/24 15:12:16 by nait-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,18 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 SERVER = server
 CLIENT = client
+SERVER_B = server_bonus
+CLIENT_B = client_bonus
 
 SF = server.c
-SOF = $(SV_SRCS:.c=.o)
-
+SOF = $(SF:.c=.o)
 CF = client.c
-COF = $(CLIENT_SRCS:.c=.o)
+COF = $(CF:.c=.o)
+
+SBF = server_bonus.c
+SBOF = $(CBF:.c=.o)
+CBF = client_bonus.c
+CBOF = $(CBF:.c=.o)
 
 
 
@@ -35,12 +41,20 @@ $(SERVER): $(SOF) $(LIBFT)
 $(CLIENT): $(COF) $(LIBFT)
 	$(CC) $(CFLAGS) $(CF) $(LIBFT) -o client
 
+bonus: $(SERVER_B) $(CLIENT_B)
+
+$(SERVER_B): $(SBOF) $(LIBFT)
+	$(CC) $(CFLAGS) $(SBF) $(LIBFT) -o server_bonus
+
+$(CLIENT_B): $(CBOF) $(LIBFT)
+	$(CC) $(CFLAGS) $(CBF) $(LIBFT) -o client_bonus
+
 clean:
-	rm -f $(COF) $(SOF)
+	rm -f $(COF) $(SOF) $(SBOF) $(CBOF)
 	cd ./libft && make clean
 
 fclean: clean
-	rm -f $(SERVER) $(CLIENT)
+	rm -f $(SERVER) $(CLIENT) $(SERVER_B) $(CLIENT_B)
 	cd ./libft && make fclean
 
 re: fclean all
