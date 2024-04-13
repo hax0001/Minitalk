@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:09:34 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/03/21 11:17:04 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:12:52 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	ft_print_hp(unsigned long n, int d)
 	result = malloc(len);
 	while (n)
 	{
-		if ((n % 16) >= 0 && (n % 16) <= 9)
+		if ((n % 16) <= 9)
 			result[i++] = ((n % 16) + 48);
 		else if ((n % 16) >= 10 && (n % 16) <= 15)
 			result[i++] = ((n % 16) + d);

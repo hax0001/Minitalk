@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hax <hax@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:32:52 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/04/01 09:52:28 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:41:48 by hax              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,16 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 3)
 	{
-		ft_printf("make sur to provid the PID and the message /n");
+		ft_printf("make sur to provid the PID and the message \n");
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
-	while (argv[2][i])
+	if(pid == -1)
+	{
+		ft_printf("PID invalid \n");
+		return(0);
+	}
+;	while (argv[2][i])
 		send_message(pid, argv[2][i++]);
 	send_message(pid, 10);
 }
