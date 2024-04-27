@@ -6,11 +6,11 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:25:01 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/04/27 14:41:24 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:25:32 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	formini(const char *str)
 {
@@ -34,11 +34,37 @@ int	formini(const char *str)
 	return (1);
 }
 
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	neg;
+	int	res;
+
+	i = 0;
+	neg = 1;
+	res = 0;
+	if (formini(str) == -1)
+		return (-1);
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			return (-1);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		res = (str[i++] - '0') + (res * 10);
+	return (res * neg);
+}
+
 void	sms(int signum)
 {
 	if (signum == SIGUSR2)
 	{
-		ft_putstr("<<<< 3LA SLAMTEK >>>>\n");
+		ft_putstr("       -------------        \n");
+		ft_putstr(">>>>> | 3LA SLAMTEK | <<<<<\n");
+		ft_putstr("       -------------        \n");
 	}
 }
 

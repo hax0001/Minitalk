@@ -6,11 +6,11 @@
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:26:07 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/04/27 14:42:23 by nait-bou         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:25:15 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	handler(int signum, struct __siginfo *info, void *vo)
 {
