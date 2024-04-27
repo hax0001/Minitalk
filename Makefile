@@ -5,56 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/08 23:45:41 by nait-bou          #+#    #+#              #
-#    Updated: 2024/03/24 15:12:16 by nait-bou         ###   ########.fr        #
+#    Created: 2024/04/25 11:25:29 by nait-bou          #+#    #+#              #
+#    Updated: 2024/04/25 11:25:31 by nait-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
+NAME1 = server
+
+NAME2 = client
+
+NAME3 = server_bonus
+
+NAME4 = client_bonus
+
+CC = gcc
+
 CFLAGS = -Wall -Wextra -Werror
-LIBFT = ./libft/libft.a
-SERVER = server
-CLIENT = client
-SERVER_B = server_bonus
-CLIENT_B = client_bonus
 
-SF = server.c
-SOF = $(SF:.c=.o)
-CF = client.c
-COF = $(CF:.c=.o)
+SOURCE = Minitalk_utils.c 
 
-SBF = server_bonus.c
-SBOF = $(CBF:.c=.o)
-CBF = client_bonus.c
-CBOF = $(CBF:.c=.o)
+OBJ = $(SOURCE:.c=.o)
 
+DEFS = minitalk.h
 
+all: $(NAME1) $(NAME2)
 
-all: $(SERVER) $(CLIENT)
+$(NAME1) : server.c  $(DEFS)
+	$(CC) $(CFLAGS) server.c $(SOURCE) -o server
+$(NAME2) : client.c $(DEFS)
+	$(CC) $(CFLAGS) client.c $(SOURCE) -o client
 
-$(LIBFT):
-	make -C ./libft
-
-$(SERVER): $(SOF) $(LIBFT)
-	$(CC) $(CFLAGS) $(SF) $(LIBFT) -o server
-
-$(CLIENT): $(COF) $(LIBFT)
-	$(CC) $(CFLAGS) $(CF) $(LIBFT) -o client
-
-bonus: $(SERVER_B) $(CLIENT_B)
-
-$(SERVER_B): $(SBOF) $(LIBFT)
-	$(CC) $(CFLAGS) $(SBF) $(LIBFT) -o server_bonus
-
-$(CLIENT_B): $(CBOF) $(LIBFT)
-	$(CC) $(CFLAGS) $(CBF) $(LIBFT) -o client_bonus
-
+bonus: $(NAME3) $(NAME4)
+$(NAME3) : server_bonus.c $(DEFS)
+	$(CC) $(CFLAGS) server_bonus.c $(SOURCE) -o server_bonus
+$(NAME4) : client_bonus.c $(DEFS)
+	$(CC) $(CFLAGS) client_bonus.c $(SOURCE) -o client_bonus
+	
 clean:
-	rm -f $(COF) $(SOF) $(SBOF) $(CBOF)
-	cd ./libft && make clean
-
+	@rm -rf $(OBJ)
 fclean: clean
-	rm -f $(SERVER) $(CLIENT) $(SERVER_B) $(CLIENT_B)
-	cd ./libft && make fclean
+	@rm -rf $(NAME1) $(NAME2) $(NAME3) $(NAME4)
 
-re: fclean all
+re: fclean all bonus

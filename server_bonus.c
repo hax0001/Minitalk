@@ -5,36 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 18:01:04 by nait-bou          #+#    #+#             */
-/*   Updated: 2024/04/01 10:56:19 by nait-bou         ###   ########.fr       */
+/*   Created: 2024/04/25 11:26:07 by nait-bou          #+#    #+#             */
+/*   Updated: 2024/04/27 14:42:23 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "minitalk.h"
 
-short	*g_s;
-
-void	handler(int sig)
+void	handler(int signum, struct __siginfo *info, void *vo)
 {
-	*g_s = *g_s << 1 | (sig == SIGUSR1);
-	*(g_s + 1) += 1;
-	if (*(g_s + 1) == 8)
+	static int	bit = 0;
+	static char	c = 0xFF;
+	static int	pid = 0;
+
+	(void)*vo;	
+	if (pid != info->si_pid)
 	{
-		write(1, (char *)g_s, 1);
-		*(g_s + 1) = 0;
+		pid = info->si_pid;
+		c = 0xFF;
+		bit = 0;
+	}
+	if (signum == SIGUSR1)
+		c |= 128 >> bit;
+	else
+		c ^= 128 >> bit;
+	if (++bit == 8)
+	{
+		if (!c)
+		{
+			kill(pid, SIGUSR2);
+		}
+		ft_putchar(c);
+		bit = 0;
+		c = 0xFF;
 	}
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	short	s;
+	struct sigaction	sa;
 
-	s = 0;
-	g_s = &s;
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
-	ft_printf("the PID of this server is %d\n", getpid());
+	if (ac != 1 || av[1] != NULL)
+	{
+		ft_putstr("error\n");
+	}
+	sa.sa_sigaction = handler;
+	sa.sa_flags = SA_SIGINFO;
+	ft_putnbr(getpid());
+	ft_putchar('\n');
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
+		pause();
 	}
 }

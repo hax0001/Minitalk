@@ -1,33 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   minitalk_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nait-bou <nait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 11:42:25 by nait-bou          #+#    #+#             */
-/*   Updated: 2023/11/25 06:05:09 by nait-bou         ###   ########.fr       */
+/*   Created: 2024/04/25 11:25:41 by nait-bou          #+#    #+#             */
+/*   Updated: 2024/04/27 14:41:41 by nait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
-char	*ft_strdup(const char *s)
+void	ft_putchar(char c)
 {
-	size_t	len;
-	size_t	i;
-	char	*d;
+	write(1, &c, 1);
+}
 
-	len = 0;
+void	ft_putstr(char *str)
+{
+	int	i;
+
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		len++;
+		write(1, &str[i], 1);
 		i++;
 	}
-	d = malloc(len + 1);
-	if (!d)
+}
+
+void	ft_putnbr(unsigned int n)
+{
+	if (n > 9)
+		ft_putnbr(n / 10);
+	ft_putchar((n % 10) + '0');
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	t;
+
+	t = (char)c;
+	while (*s)
+	{
+		if (*s == t)
+			return ((char *)s);
+		s++;
+	}
+	if (t == '\0')
+		return ((char *)s);
+	else
 		return (NULL);
-	ft_memcpy(d, s, len + 1);
-	return (d);
 }
